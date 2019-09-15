@@ -1,4 +1,5 @@
 /**
+Liberty Mupotsa
 FIXME: Place your name(s) and a description of the lab here
 See the requirements list in the Lab description for what to do
 Beetle image, Getrandom, and Dice by Dr. Jan Pearce, Berea College
