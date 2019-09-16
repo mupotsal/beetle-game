@@ -1,8 +1,7 @@
 /**
-Liberty Mupotsa
-FIXME: Place your name(s) and a description of the lab here
-See the requirements list in the Lab description for what to do
-Beetle image, Getrandom, and Dice by Dr. Jan Pearce, Berea College
+Liberty Mupotsa, Wilkensley Thervil 
+
+L04: Create a user vs computer game of chance, racing to draw a beetle.
 
 Milestone Requirements:
 By 8 am on 9/16/19 Milestone 1: Pull repo and make at least one change and commit
