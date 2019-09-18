@@ -1,10 +1,10 @@
 /**
 Liberty Mupotsa, Wilkensley Thervil 
 
-L04: Create a user vs computer game of chance, racing to draw a beetle.
+L04: Create a user vs computer game of chance, racing to complete a beetle.
 
 Milestone Requirements:
-By 8 am on 9/16/19 Milestone 1: Pull repo and make at least one change and commit
+
 
 By 8 am on 9/18/19 Milestone 2: Make sincere attempt to complete everything, 
 so you can come to class with questions.  However, it might not yet be working.
@@ -68,11 +68,32 @@ private:
 	int self_sides_;           // # sides on die
 }; //a semi colon must end every C++ class declaration.
 
-class Beetle 
+class Beetle
 {
-public:  
+public:
 	Beetle() {
 		
+	}
+	friend ostream& operator <<(ostream& stream, const Beetle& name);
+	
+
+int make_head() {
+		
+	return 0;
+	
+}
+
+int make_leg() {
+
+
+	}
+int make_eye() {
+
+	}
+int make_fillers() {
+
+	}
+int make_tail() {
 
 	}
 
