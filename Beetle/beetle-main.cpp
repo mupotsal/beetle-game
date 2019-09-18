@@ -68,40 +68,80 @@ private:
 	int self_sides_;           // # sides on die
 }; //a semi colon must end every C++ class declaration.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Beetle
 {
 public:
 	Beetle() {
 		
 	}
+	
+	string name;
+	int Legs;
+	int Head;
+	int eyes;
+	int filler;
+	int body;
+	int tail;
 	friend ostream& operator <<(ostream& stream, const Beetle& name);
-	
 
-int make_head() {
-		
-	return 0;
-	
+	string body_parts[11] = {
+			"      Y   Y      ", // fillers
+			"      \\\\_//      ", // head
+			"     .@   @.     ", // eyes
+			"  v__/  -  \\__v  ", // 
+			"v___|---.---|___v",// body and legs
+			" v__|   |   |__v ", // body and legs
+			"    \\   |   /    ", // body and legs
+			"     `. : .'     ", // tail
+			"       |:|       ",// tail
+			"       |:|       ", // tail
+			"        v        "
+	};
+
+int make_body() {
+	string bodyy = body_parts[6];
+	cout << bodyy << endl;
+	   	
 }
 
 int make_leg() {
-
+	return 0;
+	   
+		
 
 	}
 int make_eye() {
+	return 0;
+}
 
-	}
 int make_fillers() {
+		return 0;
 
-	}
-int make_tail() {
-
-	}
+}
+int  make_tail() {
+	return 0;
+}
 
 	//FIXME: Add all of your methods
 
 	void show() const { 
 		//FIX ME -- this needs to done using << overloading
 		// and it needs to show the partial Beetle.
+		ostream& operator <<(ostream & stream, const Beetle & name);
 		for (int i = 0; i < len_beetle; i++) {
 			cout << complete_beetle[i] << endl;
 		}
@@ -117,21 +157,27 @@ private:
 
     const int len_beetle = 11;
 	string complete_beetle[11] = {
-		"      Y   Y      ",
-		"      \\\\_//      ",
-		"     .@   @.     ",
-		"  v__/  -  \\__v  ",
-		"v___|---.---|___v",
-		" v__|   |   |__v ",
-		"    \\   |   /    ",
-		"     `. : .'     ",
-		"       |:|       ",
-		"       |:|       ",
+		"      Y   Y      ", // fillers
+		"      \\\\_//      ", // head
+		"     .@   @.     ", // eyes
+		"  v__/  -  \\__v  ", // 
+		"v___|---.---|___v",// body and legs
+		" v__|   |   |__v ", // body and legs
+		"    \\   |   /    ", // body and legs
+		"     `. : .'     ", // tail
+		"       |:|       ",// tail
+		"       |:|       ", // tail
 		"        v        "
 	};
-	
+
 
 }; //don't forget semi-colon!!
+
+
+ostream& operator << (ostream& stream, const Beetle& name) {
+	stream << 
+	}
+
 
 
 int main( ){
@@ -139,12 +185,23 @@ int main( ){
 	char readchar;
 
 	//FIXME: Your code
+	int tally_roll;
 
+
+	
+	
+	
+	
+	
+	
+	
+	
 	Beetle beetle1;
 	cout << "The complete Beetle!\n" << endl;
 	beetle1.show();
 
 	//FIXME: Your code
+	//beetle1.make_body;
 
 
 	cin >> readchar; //This is to keep screen open in some situations.
