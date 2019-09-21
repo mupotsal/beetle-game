@@ -87,25 +87,27 @@ public:
 	}
 	// make body
 	void make_body() {
+		body += 1;
 		cout << "making body" << endl;
 	}
 	//  make head
 	void make_head(){
-		
+		head += 1;
 	}
 	
 	// make leg
 	void make_leg() {
-
+		legs += 1;
 	}
 	// make eye
 	void make_eye() {
-
+		eyes += 1;
 	}
 
 
 	// make feeler
 	void make_feeler() {
+		feelers += 1;
 		string feelers[] = {
 			 "      Y   Y      ",
 		};
@@ -114,6 +116,7 @@ public:
 
 	// make tail
 	void make_tail() {
+		tail += 1;
 		string tail[] = { "       |:|       ",// tail
 						  "       |:|       ",
 						  "        v        " };
@@ -146,12 +149,63 @@ public:
 		}
 		return; */
 	}
+	bool is_complete() {
 
+		int sum = legs + feelers + tail + head + body + eyes;
+		if (sum == 6) {
+			return true;
+		}
+		if (sum > 6){
+			return false;
+			
+		}
+		cout << "eyes = "<< eyes << endl ;
+		cout << head<< endl;
+		cout << tail << endl;
+		cout << body<< endl;
+		cout << feelers << endl;
+		cout << legs << endl;
+	}
+
+	int total() {
+		int sum = legs + feelers + tail + head + body + eyes;
+		return sum;
+
+	}
+
+	int sum_legs() {
+		int sum = legs;
+	}
+
+	int sum_head() {
+		int sum = head;
+	}
+	int sum_feelers() {
+		int sum = feelers;
+	}
+	int sum_eyes() {
+		int sum = eyes;
+	}
+
+	int sum_body() {
+		int sum = body;
+		return sum;
+	}
+	int sum_tail() {
+		int sum = tail;
+	}
 	// This is to find if beetle 1 or the other is complete
 
 	friend ostream& operator << (ostream& stream, const Beetle& beetle);
 private:
 	string beetleName;
+	int legs = 0;
+	int head = 0;
+	int tail = 0;
+	int feelers = 0;
+	int eyes = 0;
+	int body = 0;
+
 	//FIXME: declare all other member class and instance variables here
 
 	/*Note: You need to draw your Beetle as each part is added.
@@ -193,8 +247,12 @@ int Computer_player() {
 	int croll = compdice.roll();
 
 	if (croll == 1) {
-		beetle_comp.make_body();
-		cout << "added body" << endl;
+		if (beetle_comp.sum_body() < 1) {
+			beetle_comp.make_body();
+			cout << "added body" << endl;
+			cout << beetle_comp.is_complete() << endl;
+			cout << beetle_comp.total() << endl;
+		}
 	}
 
 	else if (croll == 2) {
@@ -250,8 +308,8 @@ int main() {
 	//FIXME: Your code
 
 
-	bool hc = comp_complete();
-	bool cc =hum_complete();
+	bool hc = beetle_comp.is_complete();
+	bool cc = beetle_user.is_complete();
 	while (hc == false && cc == false) {
 		Computer_player();
 		//human_player();
