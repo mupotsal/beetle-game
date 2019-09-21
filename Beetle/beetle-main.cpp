@@ -72,22 +72,64 @@ private:
 class Beetle 
 {
 public:  
+	// Default Constructor
 	Beetle() {
-		
+		beetleName = "Beetle1";
 
 	}
+
+	Beetle(string Name_beetle) {
+		beetleName = Name_beetle;
+	}
+
+	void setName(string name) {
+		beetleName = name;
+	}
+	// make body
+	void make_body() {
+
+	}
+	//  make head
+	void make_head() {
+
+	}
+	// make leg
+	void make_leg() {
+
+	}
+	// make eye
+	void make_eye() {
+
+	}
+
+	// make feeler
+	void make_feeler() {
+
+	}
+
+	// make tail
+	void make_tail() {
+
+	}
+
 
 	//FIXME: Add all of your methods
 
-	void show() const { 
+
+	void show() const {
 		//FIX ME -- this needs to done using << overloading
 		// and it needs to show the partial Beetle.
-		for (int i = 0; i < len_beetle; i++) {
+		/*for (int i = 0; i < len_beetle; i++) {
 			cout << complete_beetle[i] << endl;
 		}
-		return; 
+		return; */
 	}
+
+	// This is to find if beetle 1 or the other is complete
+	
+	friend ostream& operator << (ostream& stream, const Beetle& beetle);
 private:
+	string beetleName;
 	//FIXME: declare all other member class and instance variables here
 
 	/*Note: You need to draw your Beetle as each part is added.
@@ -95,7 +137,7 @@ private:
 	Think about how to use the array elements in order to
 	draw the Beetle as the game progresses */
 
-    const int len_beetle = 11;
+   /* const int len_beetle = 11;
 	string complete_beetle[11] = {
 		"      Y   Y      ",
 		"      \\\\_//      ",
@@ -109,20 +151,82 @@ private:
 		"       |:|       ",
 		"        v        "
 	};
-	
+	*/
 
 }; //don't forget semi-colon!!
 
+ostream& operator <<(ostream& stream, const Beetle& beetle) {
+	beetle.show();
+	stream << beetle.beetleName << "/" << beetle.beetleName;
+	return stream;
 
+}
+
+Beetle beetle_comp;
+Beetle beetle_user;
+
+int Computer_player() {
+	
+	Dice compdice(6);
+	int croll = compdice.roll();
+
+	if (croll == 1) {
+		beetle_comp.make_body();
+	}
+
+	else if (croll == 2) {
+		beetle_comp.make_head();
+	}
+
+	else if (croll == 3) {
+		beetle_comp.make_eye();
+	}
+
+	else if (croll == 4) {
+		beetle_comp.make_feeler();
+	}
+
+	else if (croll == 5) {
+		beetle_comp.make_leg;
+	}
+
+	else if (croll == 6) {
+		beetle_comp.make_tail();
+	}
+
+	else if(croll == 1) {
+		return 0;
+	}	
+
+	
+} 
+
+int human_player() {
+	return 0;
+}
+
+bool comp_complete() {
+	return false;
+}
+
+bool hum_complete() {
+	return false;
+}
 int main( ){
 
 	char readchar;
 
 	//FIXME: Your code
 
-	Beetle beetle1;
+	
+	comp_complete();
+	hum_complete();
+	while(hum_complete == false && hum_complete == false) {	
+		Computer_player();
+		human_player();
+	} 
 	cout << "The complete Beetle!\n" << endl;
-	beetle1.show();
+	cout << beetle_comp << endl; 
 
 	//FIXME: Your code
 
