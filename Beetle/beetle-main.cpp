@@ -87,15 +87,10 @@ public:
 	}
 	// make body
 	void make_body() {
-
+		
 	}
 	//  make head
-	void make_head() {
-		string head[] = {
-	 "      \\\\_//      ", //
-	 "     .@   @.     ",
-		},
-	}
+	
 	// make leg
 	void make_leg() {
 
@@ -189,7 +184,7 @@ ostream& operator <<(ostream& stream, const Beetle& beetle) {
 Beetle beetle_comp;
 Beetle beetle_user;
 
-int Computer_player() {
+/*int Computer_player() {
 
 	Dice compdice(6);
 	int croll = compdice.roll();
@@ -223,7 +218,7 @@ int Computer_player() {
 	}
 
 
-}
+}*/
 
 int human_player() {
 	return 0;
@@ -245,10 +240,10 @@ int main() {
 
 	comp_complete();
 	hum_complete();
-	while (hum_complete == false && hum_complete == false) {
+	/*while (hum_complete == false && comp_complete == false) {
 		Computer_player();
 		human_player();
-	}
+	}*/
 	cout << "The complete Beetle!\n" << endl;
 	cout << beetle_comp << endl;
 
