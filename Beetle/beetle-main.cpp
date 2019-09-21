@@ -90,9 +90,12 @@ public:
 
 	}
 	//  make head
-	void make_head() {
-
-	}
+	void make_head() {		
+				string head[] = {
+			 "      \\\\_//      ", //
+			 "     .@   @.     ",
+		},	  
+  	}
 	// make leg
 	void make_leg() {
 
@@ -102,16 +105,37 @@ public:
 
 	}
 
+
 	// make feeler
 	void make_feeler() {
-
+		string feelers[] = {
+			 "      Y   Y      ",
+		};
 	}
+	
 
 	// make tail
 	void make_tail() {
+		string tail[] = { "       |:|       ",// tail
+						  "       |:|       ",
+						  "        v        " };
 
 	}
 
+ const int len_beetle = 11;
+ string complete_beetle[11] = {
+	 "      Y   Y      ", //fillers
+	 "      \\\\_//      ", //
+	 "     .@   @.     ", // eyes
+	 "  v__/  -  \\__v  ", // body and 6 legs
+	 "v___|---.---|___v",
+	 " v__|   |   |__v ",
+	 "    \\   |   /    ",
+	 "     `. : .'     ",
+	 "       |:|       ",// tail
+	 "       |:|       ",
+	 "        v        "
+ };
 
 	//FIXME: Add all of your methods
 
