@@ -87,9 +87,12 @@ public:
 	}
 	// make body
 	void make_body() {
-		
+		cout << "making body" << endl;
 	}
 	//  make head
+	void make_head(){
+		
+	}
 	
 	// make leg
 	void make_leg() {
@@ -184,10 +187,10 @@ ostream& operator <<(ostream& stream, const Beetle& beetle) {
 Beetle beetle_comp;
 Beetle beetle_user;
 
-/*int Computer_player() {
+int Computer_player() {
 
 	Dice compdice(6);
-	int croll = compdice.roll();
+	int croll = 1;
 
 	if (croll == 1) {
 		beetle_comp.make_body();
@@ -205,9 +208,9 @@ Beetle beetle_user;
 		beetle_comp.make_feeler();
 	}
 
-	else if (croll == 5) {
-		beetle_comp.make_leg;
-	}
+	//else if (croll == 5) {
+	//	beetle_comp.make_leg;
+	//}
 
 	else if (croll == 6) {
 		beetle_comp.make_tail();
@@ -217,19 +220,21 @@ Beetle beetle_user;
 		return 0;
 	}
 
+	cout << beetle_comp << endl;
 
-}*/
+
+}
 
 int human_player() {
 	return 0;
 }
 
 bool comp_complete() {
-	return false;
+	return true;
 }
 
 bool hum_complete() {
-	return false;
+	return true;
 }
 int main() {
 
@@ -238,14 +243,15 @@ int main() {
 	//FIXME: Your code
 
 
-	comp_complete();
-	hum_complete();
-	/*while (hum_complete == false && comp_complete == false) {
-		Computer_player();
-		human_player();
-	}*/
+	bool hc = comp_complete();
+	bool cc =hum_complete();
+	while (hc == true && cc == false) {
+		//Computer_player();
+		//human_player();
+	}
 	cout << "The complete Beetle!\n" << endl;
-	cout << beetle_comp << endl;
+	
+	cout << beetle_user << endl;
 
 	//FIXME: Your code
 
