@@ -87,33 +87,38 @@ public:
 	}
 	// make body
 	void make_body() {
+		body += 1;
 		cout << "making body" << endl;
 	}
 	//  make head
 	void make_head(){
-		
+		head += 1;
 	}
 	
 	// make leg
 	void make_leg() {
-
+		legs += 1;
 	}
 	// make eye
 	void make_eye() {
-
+		eyes += 1;
 	}
 
 
 	// make feeler
 	void make_feeler() {
+		feelers += 1;
 		string feelers[] = {
 			 "      Y   Y      ",
 		};
+
+	   
 	}
 
 
 	// make tail
 	void make_tail() {
+		tail += 1;
 		string tail[] = { "       |:|       ",// tail
 						  "       |:|       ",
 						  "        v        " };
@@ -152,7 +157,13 @@ public:
 	friend ostream& operator << (ostream& stream, const Beetle& beetle);
 private:
 	string beetleName;
-	//FIXME: declare all other member class and instance variables here
+	int legs = 0;
+	int head = 0;
+	int tail = 0;
+	int feelers = 0;
+	int eyes = 0;
+	int body = 0;
+		//FIXME: declare all other member class and instance variables here
 
 	/*Note: You need to draw your Beetle as each part is added.
 	You may use your own ASCII art or you may use mine.
@@ -245,7 +256,7 @@ int main() {
 
 	bool hc = comp_complete();
 	bool cc =hum_complete();
-	while (hc == true && cc == false) {
+	while (hc == false && cc == false) {
 		//Computer_player();
 		//human_player();
 	}
