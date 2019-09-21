@@ -190,34 +190,41 @@ Beetle beetle_user;
 int Computer_player() {
 
 	Dice compdice(6);
-	int croll = 1;
+	int croll = compdice.roll();
 
 	if (croll == 1) {
 		beetle_comp.make_body();
+		cout << "added body" << endl;
 	}
 
 	else if (croll == 2) {
 		beetle_comp.make_head();
+		cout << "added head" << endl;
 	}
 
 	else if (croll == 3) {
 		beetle_comp.make_eye();
+		cout << "added eye" << endl;
 	}
 
 	else if (croll == 4) {
 		beetle_comp.make_feeler();
+		cout << "added feeler" << endl;
 	}
 
-	//else if (croll == 5) {
-	//	beetle_comp.make_leg;
-	//}
+	else if (croll == 5) {
+	    beetle_comp.make_leg();
+		cout << "added leg "<< endl;
+	}
 
 	else if (croll == 6) {
 		beetle_comp.make_tail();
+		cout << "added tail" << endl;
 	}
 
 	else if (croll == 1) {
 		return 0;
+		cout << "added something" << endl;
 	}
 
 	cout << beetle_comp << endl;
@@ -230,11 +237,11 @@ int human_player() {
 }
 
 bool comp_complete() {
-	return true;
+	return false;
 }
 
 bool hum_complete() {
-	return true;
+	return false;
 }
 int main() {
 
@@ -245,8 +252,8 @@ int main() {
 
 	bool hc = comp_complete();
 	bool cc =hum_complete();
-	while (hc == true && cc == false) {
-		//Computer_player();
+	while (hc == false && cc == false) {
+		Computer_player();
 		//human_player();
 	}
 	cout << "The complete Beetle!\n" << endl;
