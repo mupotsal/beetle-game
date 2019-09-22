@@ -189,79 +189,116 @@ public:
 	}
 
 	void draw_body() {
-		cout << complete_beetle[14] << endl;
-		cout << complete_beetle[15] << endl;
-		cout << complete_beetle[16] << endl;
-		cout << complete_beetle[17] << endl;
+		if (the_body == true) {
+			cout << complete_beetle[14] << endl;
+			cout << complete_beetle[15] << endl;
+			cout << complete_beetle[16] << endl;
+			cout << complete_beetle[17] << endl;
+			cout << complete_beetle[9] << endl;
+			cout << complete_beetle[10] << endl;
+		}
 	}
+
 
 	void draw_pair_of_legs_and_body() {
-		cout << complete_beetle[7] << endl;
-		cout << complete_beetle[8] << endl;
-		cout << complete_beetle[8] << endl;
+		if (the_three_pailgs == true) {
+			cout << complete_beetle[7] << endl;
+			cout << complete_beetle[8] << endl;
+			cout << complete_beetle[8] << endl;
+		}
 	}
 	void draw_head() {
-		cout << complete_beetle[4] << endl;
-
+		if (the_head == true) {			
+			cout << complete_beetle[4] << endl;
+		}
 	}
 
-	void draw_eye() {
-		cout << complete_beetle[2] << endl;
-
+	void draw_eye_with_head() {
+		if (the_one_eye == 1) {
+			cout << complete_beetle[2] << endl;
+		}
 	}
 
 	void draw_all_eyes() {
-		cout << complete_beetle[3] << endl;
+		if (the_two_eyes_with_head == true) {
+			cout << complete_beetle[3] << endl;
+			cout << complete_beetle[4] << endl;
+		}
 	}
 	
 	void draw_one_feeler() {
-		cout << complete_beetle[18] << endl;
-
+		if (the_filler == 1) {
+			cout << complete_beetle[18] << endl;
+		}
 	}
 
 	void draw_two_feelers() {
-		cout << complete_beetle[0] << endl;
+		if (the_two_filler == true) {
+			cout << complete_beetle[0] << endl;
+		}
 	}
 
 	void draw_pair_of_legs() {
-		cout << complete_beetle[6] << endl;
+		if (the_one_pailgs == true) {
+			cout << complete_beetle[6] << endl;
+		}
 	}
 
 	void draw_tail() {
-		cout << complete_beetle[11] << endl;
-		cout << complete_beetle[12] << endl;
-		cout << complete_beetle[13] << endl;
+		if (the_tail == true) {
+			cout << complete_beetle[11] << endl;
+			cout << complete_beetle[12] << endl;
+			cout << complete_beetle[13] << endl;
+		}
 
 	}
 
-	
-
-
-
-
-
-
-
-
-	
-	 void current_state() {
-		 if ((sum_body() > 0) && (sum_head() < 1)) {
+	/* void current_state() {
+		 if ((sum_body() > 0) && (sum_head() < 1)) { // drawing body
 			 draw_body();
 		     }
-		 else if ((sum_body() > 0)&&(sum_head() > 0) ){
+		 else if ((sum_body() > 0)&&(sum_head() > 0) ){ // draw body and head
 			 draw_head();
 			 draw_body();
 
 		 }
+		 else if (sum_body() > 0) {
+			 if (sum_head() > 0) {
+				 if (sum_feelers() < 2) {
+					 draw_one_feeler();
+					 draw_head();
+					 draw_body();
+
+				 }
+				 else if (sum_feelers() > 2) {
+					 draw_two_feelers();
+					 draw_head();
+					 draw_body();
+				 }
+			 }
+		 }
 
 		}
+		*/
 		
-		
-	
+	 void current_state() {
+		 draw_one_feeler();
+		 draw_two_feelers();
+		 draw_eye_with_head();
+		 draw_all_eyes();
+		 draw_head();
+		 draw_body();
+		 draw_pair_of_legs();
+		 draw_pair_of_legs_and_body();
+		 draw_tail();
+
+	}
 	
 	// This is to find if beetle 1 or the other is complete
 
 	friend ostream& operator <<(ostream& stream, const Beetle& beet);
+	friend int Computer_player();
+	
 private:
 	string beetleName;
 	int legs = 0;
@@ -270,6 +307,17 @@ private:
 	int feelers = 0;
 	int eyes = 0;
 	int body = 0;
+	bool the_head = false;
+	bool the_body = false;
+	bool the_tail = false;
+	bool the_one_eye = false;
+	bool the_two_eyes_with_head = false;
+	bool the_one_pailgs = false;
+	bool the_two_pailgs = false;
+	bool the_three_pailgs = false;
+	bool the_filler = false;
+	bool the_two_filler = false;
+
 
 	const int len_beetle = 50;
 	string complete_beetle[50] = {
@@ -282,16 +330,16 @@ private:
 		"v___|---.---|___v",  // single legs added pos6
 		" v__|   |   |__v ",  // doudle legs added pos7
 		"  __|   |   |__ ",   // no leg added      pos 8
-		"    \\   |   /    ", // part of body      pos 9
-		"     `. : .'     ",  // part of body      pos 10
-		"       |:|       ",// tail                pos 11
-		"       |:|       ", // part of tail       pos12
-		"        v        " //  part of tail       pos 13
-		" /  -  \\  ", // body and 6 legs   pos5   pos 14
-		"|---.---|",  // single legs added pos6   pos 15
-		"|   |   | ",  // doudle legs added pos7  pos 16
-		"|   |   | ",  // doudle legs added pos7  pos 17
-		 "     Y         ", //fillers             pos 18
+		"      \\   |   /    ", // part of body      pos 9
+		"        `. : .'     ",  // part of body      pos 10
+		"         |:|       ",// tail                pos 11
+		"         |:|       ", // part of tail       pos12
+		"          v        " //  part of tail       pos 13
+		"       /  -  \\  ", // body and 6 legs   pos5   pos 14
+		"      |---.---|",  // single legs added pos6   pos 15
+	    "      |   |   | ",  // doudle legs added pos7  pos 16
+		"      |   |   | ",  // doudle legs added pos7  pos 17
+		//"          Y         ", //fillers             pos 18
 		
 	};
 
@@ -329,6 +377,7 @@ int Computer_player() {
 			cout << "COMP PARTS = "<<beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(true);
 			humanp_value = beetle_user.who_plays(false);
+			beetle_comp.the_body = true;
 			beetle_comp.current_state();
 
 		}
@@ -336,8 +385,10 @@ int Computer_player() {
 			cout << "Comp-Body already added" << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
-			humanp_value = beetle_user.who_plays(true);
+			humanp_value = beetle_user.who_plays(true);	
+			//beetle_comp.the_body = true;
 			beetle_comp.current_state();
+			
 
 		}
 	}
@@ -350,13 +401,17 @@ int Computer_player() {
 				 cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				 comp_pvalue = beetle_comp.who_plays(true);
 				 humanp_value = beetle_user.who_plays(false);
+				 beetle_comp.the_head = true;
 				 beetle_comp.current_state();
+
 			 }
 			 else {
 				 cout << "The body has been added already" << endl;
 				 cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				 comp_pvalue = beetle_comp.who_plays(false);
 				 humanp_value = beetle_user.who_plays(true);
+				 beetle_comp.the_head = true;
+				 beetle_comp.current_state();
 			 }
 		}
 		else {
@@ -365,25 +420,42 @@ int Computer_player() {
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
 			beetle_comp.current_state();
+			beetle_comp.the_head = false;
 
 		}
 	}
 
 	else if (croll == 3) {
 		if ((beetle_comp.sum_head() > 0) && (beetle_comp.sum_body() > 0)) {
-			if (beetle_comp.sum_eyes() < 2) {
+			if (beetle_comp.sum_eyes() < 1) {
 				beetle_comp.make_eye();
 				cout << "comp added eye" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.the_one_eye = true;
 				beetle_comp.current_state();
+
+			}
+			else if (beetle_comp.sum_eyes() > 0 ) {
+				beetle_comp.make_eye();
+				cout << "comp added another eye" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+				comp_pvalue = beetle_comp.who_plays(true);
+				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.the_one_eye = false;
+				beetle_comp.the_two_eyes_with_head = true;
+
+				beetle_comp.current_state();
+
 			}
 			else {
 				cout << "Comp-Eyes already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
+				beetle_comp.the_one_eye = false;
+				beetle_comp.the_two_eyes_with_head = true;
 				beetle_comp.current_state();
 			}
 
@@ -394,6 +466,7 @@ int Computer_player() {
 			comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
 				beetle_comp.current_state();
+				beetle_comp.the_one_eye = false;
 		}
 	}
 
@@ -402,17 +475,20 @@ int Computer_player() {
 	else if (croll == 4) {
 		if ((beetle_comp.sum_body() > 0) && (beetle_comp.sum_head() > 0)) {
 			if (beetle_comp.sum_feelers() < 2) {
-				beetle_comp.make_feeler();
+				//beetle_comp.make_feeler();
 				cout << " comp added feeler" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.the_filler = true;
+				beetle_comp.the_two_filler = true;
 				beetle_comp.current_state();
 			}
 			else {
 				cout << "Comp-Feelers already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_comp.the_filler = true;
 				beetle_comp.current_state();
 			}
 		}
@@ -421,6 +497,7 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.the_filler = false;
 			beetle_comp.current_state();
 		}
 
@@ -433,14 +510,18 @@ int Computer_player() {
 				cout << " comp added leg " << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_comp.the_body = true;
+				beetle_comp.the_two_pailgs = true;
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
 		 	}
 		    else {
 				cout << "The is already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
-				comp_pvalue = beetle_comp.who_plays(false);
-				humanp_value = beetle_user.who_plays(true);
+				//comp_pvalue = beetle_comp.who_plays(false);
+				//humanp_value = beetle_user.who_plays(true);
 				beetle_comp.current_state();
+				
 		 }
 		}
 		else {
@@ -448,7 +529,9 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.the_two_pailgs = false;
 			beetle_comp.current_state();
+
 
 		}
 		
@@ -462,6 +545,7 @@ int Computer_player() {
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.the_tail = true;
 				beetle_comp.current_state();
 			}
 			else {
@@ -487,7 +571,7 @@ int Computer_player() {
 		cout << "added something" << endl;
 	}
 
-	cout << beetle_comp << endl;
+	//cout << beetle_comp << endl;
 
 
 }
