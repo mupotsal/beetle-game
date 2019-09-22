@@ -97,7 +97,7 @@ public:
 	
 	// make leg
 	void make_leg() {
-		legs += 1;
+		legs += 3;
 	}
 	// make eye
 	void make_eye() {
@@ -256,28 +256,38 @@ int Computer_player() {
 	}
 
 	else if (croll == 2) {
-		beetle_comp.make_head();
-		cout << "added head" << endl;
+		if (beetle_comp.sum_head() < 1) {
+			beetle_comp.make_head();
+			cout << "added head" << endl;
+		}
 	}
 
 	else if (croll == 3) {
-		beetle_comp.make_eye();
-		cout << "added eye" << endl;
+		if (beetle_comp.sum_eyes() < 2) {
+			beetle_comp.make_eye();
+			cout << "added eye" << endl;
+		}
 	}
 
 	else if (croll == 4) {
-		beetle_comp.make_feeler();
-		cout << "added feeler" << endl;
+		if (beetle_comp.sum_feelers () < 2) {
+			beetle_comp.make_feeler();
+			cout << "added feeler" << endl;
+		}
 	}
 
 	else if (croll == 5) {
-	    beetle_comp.make_leg();
-		cout << "added leg "<< endl;
+		if (beetle_comp.sum_legs() < 6) {
+			beetle_comp.make_leg();
+			cout << "added leg " << endl;
+		}
 	}
 
 	else if (croll == 6) {
-		beetle_comp.make_tail();
-		cout << "added tail" << endl;
+		if (beetle_comp.sum_body() < 1) {
+			beetle_comp.make_tail();
+			cout << "added tail" << endl;
+		}
 	}
 
 	else if (croll == 1) {
