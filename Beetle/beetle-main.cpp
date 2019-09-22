@@ -103,9 +103,7 @@ public:
 	// make feeler
 	void make_feeler() {
 		feelers += 1;
-		string feelers[] = {
-			 "      Y   Y      ",
-		};
+		
 	}
 
 
@@ -135,10 +133,10 @@ public:
 	bool is_complete() {
 
 		int sum = legs + feelers + tail + head + body + eyes;
-		if (sum >= 11) {
+		if (sum >= 13) {
 			return true;
 		}
-		if (sum < 11) {
+		if (sum < 13) {
 			return false;
 
 		}
@@ -227,14 +225,17 @@ public:
 	}
 	
 	void draw_one_feeler() {
-		if (the_filler == 1) {
-			cout << complete_beetle[18] << endl;
+		if (the_filler == true) {
+			cout << complete_beetle[17] << endl;
 		}
 	}
 
 	void draw_two_feelers() {
-		if (the_two_filler == true) {
+		//if (the_two_filler == true) {
+		//	cout << complete_beetle[6] << endl;
+		if (the_two_feelers == true) {
 			cout << complete_beetle[0] << endl;
+			//cout << complete_beetle[4] << endl;
 		}
 	}
 
@@ -247,7 +248,8 @@ public:
 			cout << complete_beetle[10] << endl;
 		}
 
-	} void draw_two_pai_legs() {
+	} 
+void draw_two_pai_legs() {
 		if (the_two_pailgs == true) {
 			cout << complete_beetle[6] << endl;
 			cout << complete_beetle[7] << endl;
@@ -345,8 +347,8 @@ private:
 	bool the_two_pailgs = false;
 	bool the_three_pailgs = false;
 	bool the_filler = false;
-	bool the_two_filler = false;
-
+	bool the_two_feelers = false;
+	
 
 	const int len_beetle = 50;
 	string complete_beetle[50] = {
@@ -368,7 +370,7 @@ private:
 		"      |---.---|",  // single legs added pos6   pos 15
 	    "      |   |   | ",  // doudle legs added pos7  pos 16
 		"      |   |   | ",  // doudle legs added pos7  pos 17
-		//"          Y         ", //fillers             pos 18
+		"          Y         " //fillers             pos 18
 		
 	};
 
@@ -408,6 +410,7 @@ int Computer_player() {
 			humanp_value = beetle_user.who_plays(false);
 			beetle_comp.the_body = true;
 			beetle_comp.current_state();
+
 
 		}
 		else {
@@ -502,22 +505,37 @@ int Computer_player() {
 	 
 
 	else if (croll == 4) {
+	
 		if ((beetle_comp.sum_body() > 0) && (beetle_comp.sum_head() > 0)) {
-			if (beetle_comp.sum_feelers() < 2) {
-				//beetle_comp.make_feeler();
+			if (beetle_comp.sum_feelers() == 0) {
+				beetle_comp.make_feeler();
 				cout << " comp added feeler" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
 				beetle_comp.the_filler = true;
-				beetle_comp.the_two_filler = true;
+				beetle_comp.the_two_feelers = false;
+				beetle_comp.current_state();
+				//beetle_comp.the_two_filler = true;
+				//beetle_comp.the_filler = false;
+				
+			}
+			else if (beetle_comp.sum_feelers() > 0) {
+				beetle_comp.make_feeler();
+				cout << " comp added second feeler" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+				comp_pvalue = beetle_comp.who_plays(true);
+				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.the_filler = false;
+				beetle_comp.the_two_feelers = true;
 				beetle_comp.current_state();
 			}
+			
 			else {
 				cout << "Comp-Feelers already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
-				beetle_comp.the_filler = true;
+				//beetle_comp.the_filler = false;
 				beetle_comp.current_state();
 			}
 		}
@@ -806,6 +824,7 @@ int main() {
 	while (beetle_comp.is_complete() == false && beetle_user.is_complete() == false) {
 		while ((comp_pvalue == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
 			Computer_player();
+			cout << "the sum of feelers"<< beetle_comp.sum_feelers();
 		}
 		while ((humanp_value == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
 			human_player();
