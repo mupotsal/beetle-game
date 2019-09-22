@@ -3,16 +3,11 @@ Liberty Mupotsa
 FIXME: Place your name(s) and a description of the lab here
 See the requirements list in the Lab description for what to do
 Beetle image, Getrandom, and Dice by Dr. Jan Pearce, Berea College
-
 Milestone Requirements:
 By 8 am on 9/16/19 Milestone 1: Pull repo and make at least one change and commit
-
 By 8 am on 9/18/19 Milestone 2: Make sincere attempt to complete everything,
 so you can come to class with questions.  However, it might not yet be working.
-
 By 8 am on 9/20/19 Final Milestone: Lab is complete.
-
-
 */
 
 #include <iostream>
@@ -91,13 +86,13 @@ public:
 		cout << "making body" << endl;
 	}
 	//  make head
-	void make_head(){
+	void make_head() {
 		head += 1;
 	}
-	
+
 	// make leg
 	void make_leg() {
-		legs += 3;
+		legs += 1;
 	}
 	// make eye
 	void make_eye() {
@@ -155,14 +150,14 @@ public:
 		if (sum == 6) {
 			return true;
 		}
-		if (sum > 6){
+		if (sum > 6) {
 			return false;
-			
+
 		}
-		cout << "eyes = "<< eyes << endl ;
-		cout << head<< endl;
+		cout << "eyes = " << eyes << endl;
+		cout << head << endl;
 		cout << tail << endl;
-		cout << body<< endl;
+		cout << body << endl;
 		cout << feelers << endl;
 		cout << legs << endl;
 	}
@@ -239,7 +234,7 @@ ostream& operator <<(ostream& stream, const Beetle& beetle) {
 }
 
 Beetle beetle_comp;
-Beetle beetle_hum;
+Beetle beetle_user;
 
 int Computer_player() {
 
@@ -256,38 +251,28 @@ int Computer_player() {
 	}
 
 	else if (croll == 2) {
-		if (beetle_comp.sum_head() < 1) {
-			beetle_comp.make_head();
-			cout << "added head" << endl;
-		}
+		beetle_comp.make_head();
+		cout << "added head" << endl;
 	}
 
 	else if (croll == 3) {
-		if (beetle_comp.sum_eyes() < 2) {
-			beetle_comp.make_eye();
-			cout << "added eye" << endl;
-		}
+		beetle_comp.make_eye();
+		cout << "added eye" << endl;
 	}
 
 	else if (croll == 4) {
-		if (beetle_comp.sum_feelers () < 2) {
-			beetle_comp.make_feeler();
-			cout << "added feeler" << endl;
-		}
+		beetle_comp.make_feeler();
+		cout << "added feeler" << endl;
 	}
 
 	else if (croll == 5) {
-		if (beetle_comp.sum_legs() < 6) {
-			beetle_comp.make_leg();
-			cout << "added leg " << endl;
-		}
+		beetle_comp.make_leg();
+		cout << "added leg " << endl;
 	}
 
 	else if (croll == 6) {
-		if (beetle_comp.sum_body() < 1) {
-			beetle_comp.make_tail();
-			cout << "added tail" << endl;
-		}
+		beetle_comp.make_tail();
+		cout << "added tail" << endl;
 	}
 
 	else if (croll == 1) {
@@ -301,64 +286,8 @@ int Computer_player() {
 }
 
 int human_player() {
-
-	Dice humandice(6);
-	int croll = humandice.roll();
-
-	if (croll == 1) {
-		if (beetle_hum.sum_body() < 1) {
-			beetle_hum.make_body();
-			cout << "added body" << endl;
-			cout << beetle_hum.is_complete() << endl;
-			cout << beetle_hum.total() << endl;
-		}
-	}
-
-	else if (croll == 2) {
-		if (beetle_hum.sum_head() < 1) {
-			beetle_hum.make_head();
-			cout << "added head" << endl;
-		}
-	}
-
-	else if (croll == 3) {
-		if (beetle_hum.sum_eyes() < 2) {
-			beetle_hum.make_eye();
-			cout << "added eye" << endl;
-		}
-	}
-
-	else if (croll == 4) {
-		if (beetle_hum.sum_feelers() < 2) {
-			beetle_hum.make_feeler();
-			cout << "added feeler" << endl;
-		}
-	}
-
-	else if (croll == 5) {
-		if (beetle_hum.sum_legs() < 6) {
-			beetle_hum.make_leg();
-			cout << "added leg " << endl;
-		}
-	}
-
-	else if (croll == 6) {
-		if (beetle_hum.sum_body() < 1) {
-			beetle_hum.make_tail();
-			cout << "added tail" << endl;
-		}
-	}
-
-	else if (croll == 1) {
-		return 0;
-		cout << "added something" << endl;
-	}
-
-	cout << beetle_comp << endl;
-
-
+	return 0;
 }
-
 
 bool comp_complete() {
 	return false;
@@ -375,15 +304,14 @@ int main() {
 
 
 	bool hc = beetle_comp.is_complete();
-	bool cc = beetle_hum.is_complete();
+	bool cc = beetle_user.is_complete();
 	while (hc == false && cc == false) {
 		Computer_player();
-		human_player();
+		//human_player();
 	}
 	cout << "The complete Beetle!\n" << endl;
-	cout << beetle_comp << endl;
-	cout << beetle_hum << endl;
-	cout << "this is text" << endl;
+
+	cout << beetle_user << endl;
 
 	//FIXME: Your codee
 
@@ -391,4 +319,3 @@ int main() {
 	cin >> readchar; //This is to keep screen open in some situations.
 	return 0;
 }
-
