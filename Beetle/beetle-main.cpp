@@ -238,11 +238,38 @@ public:
 		}
 	}
 
-	void draw_pair_of_legs() {
+	void draw_pair_of_legs() { // with the body also
 		if (the_one_pailgs == true) {
 			cout << complete_beetle[6] << endl;
+			cout << complete_beetle[8] << endl;
+			cout << complete_beetle[8] << endl;
+			cout << complete_beetle[9] << endl;
+			cout << complete_beetle[10] << endl;
 		}
+
+	} void draw_two_pai_legs() {
+		if (the_two_pailgs == true) {
+			cout << complete_beetle[6] << endl;
+			cout << complete_beetle[7] << endl;
+			cout << complete_beetle[8] << endl;
+			cout << complete_beetle[9] << endl;
+			cout << complete_beetle[10] << endl;
+		}
+
 	}
+
+	void draw_three_pai_legs() {
+		if (the_three_pailgs == true) {
+			cout << complete_beetle[6] << endl;
+			cout << complete_beetle[7] << endl;
+			cout << complete_beetle[7] << endl;
+			cout << complete_beetle[9] << endl;
+			cout << complete_beetle[10] << endl;
+		}
+
+	}
+
+
 
 	void draw_tail() {
 		if (the_tail == true) {
@@ -287,9 +314,11 @@ public:
 		 draw_eye_with_head();
 		 draw_all_eyes();
 		 draw_head();
-		 draw_body();
+		 draw_body();		 
 		 draw_pair_of_legs();
-		 draw_pair_of_legs_and_body();
+		 draw_two_pai_legs();
+		 //draw_pair_of_legs_and_body();
+		 draw_three_pai_legs();
 		 draw_tail();
 
 	}
@@ -329,7 +358,7 @@ private:
 		"  v__/  -  \\__v  ", // body and 6 legs   pos5
 		"v___|---.---|___v",  // single legs added pos6
 		" v__|   |   |__v ",  // doudle legs added pos7
-		"  __|   |   |__ ",   // no leg added      pos 8
+		"    |   |   |   ",   // no leg added      pos 8
 		"      \\   |   /    ", // part of body      pos 9
 		"        `. : .'     ",  // part of body      pos 10
 		"         |:|       ",// tail                pos 11
@@ -505,16 +534,40 @@ int Computer_player() {
 
 	else if (croll == 5) {
 		if (beetle_comp.sum_body() == 1) {
-		    if (beetle_comp.sum_legs() < 6) {
+		    if (beetle_comp.sum_legs() < 1) {
 				beetle_comp.make_leg();
 				cout << " comp added leg " << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
-				beetle_comp.the_body = true;
+				beetle_comp.the_body = false;
+				beetle_comp.the_one_pailgs = true;
+				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
+			
+		 	}
+			else if ((beetle_comp.sum_legs() >1) && (beetle_comp.sum_legs() < 4) ){
+				beetle_comp.make_leg();
+				cout << " comp added the Second leg " << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_comp.the_body = false;
+				beetle_comp.the_one_pailgs = false;
 				beetle_comp.the_two_pailgs = true;
 				humanp_value = beetle_user.who_plays(false);
 				beetle_comp.current_state();
-		 	}
+			}
+			else if ((beetle_comp.sum_legs() > 3) && (beetle_comp.sum_legs() < 6)) {
+				beetle_comp.make_leg();
+				cout << " comp added leg third leg " << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_comp.the_body = false;
+				beetle_comp.the_one_pailgs = false;
+				beetle_comp.the_two_pailgs = false;
+				beetle_comp.the_three_pailgs = true;
+				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
+			}
 		    else {
 				cout << "The is already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
