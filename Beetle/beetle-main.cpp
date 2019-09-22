@@ -239,7 +239,7 @@ ostream& operator <<(ostream& stream, const Beetle& beetle) {
 }
 
 Beetle beetle_comp;
-Beetle beetle_user;
+Beetle beetle_hum;
 
 int Computer_player() {
 
@@ -301,8 +301,64 @@ int Computer_player() {
 }
 
 int human_player() {
-	return 0;
+
+	Dice humandice(6);
+	int croll = humandice.roll();
+
+	if (croll == 1) {
+		if (beetle_hum.sum_body() < 1) {
+			beetle_hum.make_body();
+			cout << "added body" << endl;
+			cout << beetle_hum.is_complete() << endl;
+			cout << beetle_hum.total() << endl;
+		}
+	}
+
+	else if (croll == 2) {
+		if (beetle_hum.sum_head() < 1) {
+			beetle_hum.make_head();
+			cout << "added head" << endl;
+		}
+	}
+
+	else if (croll == 3) {
+		if (beetle_hum.sum_eyes() < 2) {
+			beetle_hum.make_eye();
+			cout << "added eye" << endl;
+		}
+	}
+
+	else if (croll == 4) {
+		if (beetle_hum.sum_feelers() < 2) {
+			beetle_hum.make_feeler();
+			cout << "added feeler" << endl;
+		}
+	}
+
+	else if (croll == 5) {
+		if (beetle_hum.sum_legs() < 6) {
+			beetle_hum.make_leg();
+			cout << "added leg " << endl;
+		}
+	}
+
+	else if (croll == 6) {
+		if (beetle_hum.sum_body() < 1) {
+			beetle_hum.make_tail();
+			cout << "added tail" << endl;
+		}
+	}
+
+	else if (croll == 1) {
+		return 0;
+		cout << "added something" << endl;
+	}
+
+	cout << beetle_comp << endl;
+
+
 }
+
 
 bool comp_complete() {
 	return false;
@@ -319,14 +375,15 @@ int main() {
 
 
 	bool hc = beetle_comp.is_complete();
-	bool cc = beetle_user.is_complete();
+	bool cc = beetle_hum.is_complete();
 	while (hc == false && cc == false) {
 		Computer_player();
-		//human_player();
+		human_player();
 	}
 	cout << "The complete Beetle!\n" << endl;
-	
-	cout << beetle_user << endl;
+	cout << beetle_comp << endl;
+	cout << beetle_hum << endl;
+	cout << "this is text" << endl;
 
 	//FIXME: Your codee
 
