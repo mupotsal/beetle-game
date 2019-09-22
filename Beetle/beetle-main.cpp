@@ -187,6 +187,77 @@ public:
 	bool who_plays(bool value) {
 		return value ;
 	}
+
+	void draw_body() {
+		cout << complete_beetle[14] << endl;
+		cout << complete_beetle[15] << endl;
+		cout << complete_beetle[16] << endl;
+		cout << complete_beetle[17] << endl;
+	}
+
+	void draw_pair_of_legs_and_body() {
+		cout << complete_beetle[7] << endl;
+		cout << complete_beetle[8] << endl;
+		cout << complete_beetle[8] << endl;
+	}
+	void draw_head() {
+		cout << complete_beetle[4] << endl;
+
+	}
+
+	void draw_eye() {
+		cout << complete_beetle[2] << endl;
+
+	}
+
+	void draw_all_eyes() {
+		cout << complete_beetle[3] << endl;
+	}
+	
+	void draw_one_feeler() {
+		cout << complete_beetle[18] << endl;
+
+	}
+
+	void draw_two_feelers() {
+		cout << complete_beetle[0] << endl;
+	}
+
+	void draw_pair_of_legs() {
+		cout << complete_beetle[6] << endl;
+	}
+
+	void draw_tail() {
+		cout << complete_beetle[11] << endl;
+		cout << complete_beetle[12] << endl;
+		cout << complete_beetle[13] << endl;
+
+	}
+
+	
+
+
+
+
+
+
+
+
+	
+	 void current_state() {
+		 if ((sum_body() > 0) && (sum_head() < 1)) {
+			 draw_body();
+		     }
+		 else if ((sum_body() > 0)&&(sum_head() > 0) ){
+			 draw_head();
+			 draw_body();
+
+		 }
+
+		}
+		
+		
+	
 	
 	// This is to find if beetle 1 or the other is complete
 
@@ -200,19 +271,28 @@ private:
 	int eyes = 0;
 	int body = 0;
 
-	const int len_beetle = 11;
-	string complete_beetle[11] = {
-		 "     Y   Y      ", //fillers
-		"      \\\\_//      ", //
-		"     .@   @.     ", // eyes
-		"  v__/  -  \\__v  ", // body and 6 legs
-		"v___|---.---|___v",
-		" v__|   |   |__v ",
-		"    \\   |   /    ",
-		"     `. : .'     ",
-		"       |:|       ",// tail
-		"       |:|       ",
-		"        v        "
+	const int len_beetle = 50;
+	string complete_beetle[50] = {
+		 "     Y   Y      ", //fillers             pos 0
+		"      \\\\_//      ", //                  pos1 
+		"     .@          ", // eyes one eye       pos2
+		"     .@   @.     ", // eyes               pos 3
+		"      /  -  \\ ", // head                 pos 4
+		"  v__/  -  \\__v  ", // body and 6 legs   pos5
+		"v___|---.---|___v",  // single legs added pos6
+		" v__|   |   |__v ",  // doudle legs added pos7
+		"  __|   |   |__ ",   // no leg added      pos 8
+		"    \\   |   /    ", // part of body      pos 9
+		"     `. : .'     ",  // part of body      pos 10
+		"       |:|       ",// tail                pos 11
+		"       |:|       ", // part of tail       pos12
+		"        v        " //  part of tail       pos 13
+		" /  -  \\  ", // body and 6 legs   pos5   pos 14
+		"|---.---|",  // single legs added pos6   pos 15
+		"|   |   | ",  // doudle legs added pos7  pos 16
+		"|   |   | ",  // doudle legs added pos7  pos 17
+		 "     Y         ", //fillers             pos 18
+		
 	};
 
 	//FIXME: declare all other member class and instance variables here
@@ -249,12 +329,15 @@ int Computer_player() {
 			cout << "COMP PARTS = "<<beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(true);
 			humanp_value = beetle_user.who_plays(false);
+			beetle_comp.current_state();
+
 		}
 		else {
 			cout << "Comp-Body already added" << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.current_state();
 
 		}
 	}
@@ -267,6 +350,7 @@ int Computer_player() {
 				 cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				 comp_pvalue = beetle_comp.who_plays(true);
 				 humanp_value = beetle_user.who_plays(false);
+				 beetle_comp.current_state();
 			 }
 			 else {
 				 cout << "The body has been added already" << endl;
@@ -280,6 +364,7 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.current_state();
 
 		}
 	}
@@ -292,12 +377,14 @@ int Computer_player() {
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
 			}
 			else {
 				cout << "Comp-Eyes already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
+				beetle_comp.current_state();
 			}
 
 		}
@@ -306,6 +393,7 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
+				beetle_comp.current_state();
 		}
 	}
 
@@ -319,11 +407,13 @@ int Computer_player() {
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
 			}
 			else {
 				cout << "Comp-Feelers already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_comp.current_state();
 			}
 		}
 		else {
@@ -331,6 +421,7 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.current_state();
 		}
 
 	}
@@ -349,6 +440,7 @@ int Computer_player() {
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
+				beetle_comp.current_state();
 		 }
 		}
 		else {
@@ -356,6 +448,7 @@ int Computer_player() {
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.current_state();
 
 		}
 		
@@ -369,12 +462,14 @@ int Computer_player() {
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(true);
 				humanp_value = beetle_user.who_plays(false);
+				beetle_comp.current_state();
 			}
 			else {
 				cout << "Comp-tail already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_user.who_plays(true);
+				beetle_comp.current_state();
 			}
 		}
 		else {
@@ -382,6 +477,7 @@ int Computer_player() {
 			cout << " COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(false);
 			humanp_value = beetle_user.who_plays(true);
+			beetle_comp.current_state();
 		}
 		
 	}
@@ -578,7 +674,7 @@ int main() {
 			human_player();
 		}
 	}
-	//cout << "The complete Beetle!\n" << endl;
+	cout << "The complete Beetle!\n" << endl;
 
 	cout << beetle_user << endl;
 	cout << beetle_comp << endl;
