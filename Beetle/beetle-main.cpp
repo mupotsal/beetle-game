@@ -92,7 +92,7 @@ public:
 
 	// make leg
 	void make_leg() {
-		legs += 1;
+		legs += 2;
 	}
 	// make eye
 	void make_eye() {
@@ -147,10 +147,10 @@ public:
 	bool is_complete() {
 
 		int sum = legs + feelers + tail + head + body + eyes;
-		if (sum > 6) {
+		if (sum > 11) {
 			return true;
 		}
-		if (sum <6) {
+		if (sum < 11) {
 			return false;
 
 		}
@@ -254,49 +254,107 @@ int Computer_player() {
 			cout << beetle_comp.is_complete() << endl;
 			cout << "COMP PARTS = "<<beetle_comp.total() << endl;
 		}
+		else {
+			cout << "Comp-Body already added" << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
+
+		}
 	}
 
 	else if (croll == 2) {
-		if (beetle_comp.sum_head() < 1) {
-			beetle_comp.make_head();
-			cout << " Comp added head" << endl;
+		if (beetle_comp.sum_body() == 1) {
+			 if (beetle_comp.sum_head() < 1) {
+				 beetle_comp.make_head();
+				 cout << " Comp added head" << endl;
+				 cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			 }
+			 else {
+				 cout << "The body has been added already" << endl;
+				 cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			 }
+		}
+		else {
+			cout << "Conputer Got Head but Body is missing" << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 
 		}
 	}
 
 	else if (croll == 3) {
-		if (beetle_comp.sum_head() < 1) {
-			beetle_comp.make_eye();
-			cout << "comp added eye" << endl;
+		if ((beetle_comp.sum_head() > 0) && (beetle_comp.sum_body() > 0)) {
+			if (beetle_comp.sum_eyes() < 2) {
+				beetle_comp.make_eye();
+				cout << "comp added eye" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+			else {
+				cout << "Comp-Eyes already added" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+
+		}
+		else {
+			cout << "Computer Got Eye but Body and or head is missing " << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
-		
 	}
 
+	 
+
 	else if (croll == 4) {
-		if (beetle_comp.sum_head() < 2) {
-			beetle_comp.make_feeler();
-			cout << " comp added feeler" << endl;
+		if ((beetle_comp.sum_body() > 0) && (beetle_comp.sum_head() > 0)) {
+			if (beetle_comp.sum_feelers() < 2) {
+				beetle_comp.make_feeler();
+				cout << " comp added feeler" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+			else {
+				cout << "Comp-Feelers already added" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+		}
+		else {
+			cout << "Computer Got Feeler but Body and or head is missing " << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
-		
+
 	}
 
 	else if (croll == 5) {
-		if (beetle_comp.sum_legs() < 6) {
-			beetle_comp.make_leg();
-			cout << " comp added leg " << endl;
+		if (beetle_comp.sum_body() == 1) {
+		    if (beetle_comp.sum_legs() < 6) {
+				beetle_comp.make_leg();
+				cout << " comp added leg " << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+		 	}
+		    else {
+				cout << "The is already added" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+		 }
+		}
+		else {
+			cout << "The Body is missing" << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
+
 		}
 		
 	}
 
 	else if (croll == 6) {
-		if (beetle_comp.sum_tail() < 1) {
-			beetle_comp.make_tail();
-			cout << " comp added tail" << endl;
-			cout << "COMP PARTS = " << beetle_comp.total() << endl;
+		if (beetle_comp.sum_body() > 0) {
+			if (beetle_comp.sum_tail() < 1) {
+				beetle_comp.make_tail();
+				cout << " comp added tail" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+			else {
+				cout << "Comp-tail already added" << endl;
+				cout << "COMP PARTS = " << beetle_comp.total() << endl;
+			}
+		}
+		else {
+			cout << "Computer Got tail but The Body is missing" << endl;
+			cout << " COMP PARTS = " << beetle_comp.total() << endl;
 		}
 		
 	}
@@ -325,6 +383,10 @@ int human_player() {
 			cout << "Total human Parts" << beetle_user.total() << endl;
 			return 0;
 		}
+		else {
+			cout << "Human_Player Body already added" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
 	}
 
 
@@ -334,21 +396,33 @@ int human_player() {
 			cout << " human added head" << endl;
 			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
+		else {
+			cout << "Human_Player Head already added" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
 	}
 
 	else if (croll == 3) {
-		if (beetle_user.sum_head() < 1) {
+		if (beetle_user.sum_eyes() < 1) {
 			beetle_user.make_eye();
 			cout << " human added eye" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
+		else {
+			cout << "Human_Player Eyes already added" << endl;
 			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 
 	}
 
 	else if (croll == 4) {
-		if (beetle_user.sum_head() < 2) {
+		if (beetle_user.sum_feelers() < 2) {
 			beetle_user.make_feeler();
 			cout << " human added feeler" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
+		else {
+			cout << "Human_Player Feelers already added" << endl;
 			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 	}
@@ -358,8 +432,12 @@ int human_player() {
 			beetle_user.make_leg();
 			cout << " human added leg " << endl;
 			cout << "Total human Parts" << beetle_user.total() << endl;
-		}
 
+		}
+		else {
+			cout << "Human_Player Legs already added" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
 	}
 
 	else if (croll == 6) {
@@ -368,7 +446,10 @@ int human_player() {
 			cout << " human added tail" << endl;
 			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
-
+		else {
+			cout << "Human_Player Tail already added" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
+		}
 	}
 
 
