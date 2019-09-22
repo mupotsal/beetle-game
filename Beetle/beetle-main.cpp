@@ -147,19 +147,20 @@ public:
 	bool is_complete() {
 
 		int sum = legs + feelers + tail + head + body + eyes;
-		if (sum == 6) {
+		if (sum > 6) {
 			return true;
 		}
-		if (sum > 6) {
+		if (sum <6) {
 			return false;
 
 		}
-		cout << "eyes = " << eyes << endl;
+		/*		cout << "eyes = " << eyes << endl;
 		cout << head << endl;
 		cout << tail << endl;
 		cout << body << endl;
 		cout << feelers << endl;
-		cout << legs << endl;
+		cout << legs << endl; 
+		*/
 	}
 
 	int total() {
@@ -242,30 +243,33 @@ Beetle beetle_comp;
 Beetle beetle_user;
 
 int Computer_player() {
-
+	cout << "we are her" << endl;
 	Dice compdice(6);
 	int croll = compdice.roll();
 
 	if (croll == 1) {
 		if (beetle_comp.sum_body() < 1) {
 			beetle_comp.make_body();
-			cout << "added body" << endl;
+			cout << " COmp added body" << endl;
 			cout << beetle_comp.is_complete() << endl;
-			cout << beetle_comp.total() << endl;
+			cout << "COMP PARTS = "<<beetle_comp.total() << endl;
 		}
 	}
 
 	else if (croll == 2) {
 		if (beetle_comp.sum_head() < 1) {
 			beetle_comp.make_head();
-			cout << "added head" << endl;
+			cout << " Comp added head" << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
+
 		}
 	}
 
 	else if (croll == 3) {
 		if (beetle_comp.sum_head() < 1) {
 			beetle_comp.make_eye();
-			cout << "added eye" << endl;
+			cout << "comp added eye" << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
 		
 	}
@@ -273,7 +277,8 @@ int Computer_player() {
 	else if (croll == 4) {
 		if (beetle_comp.sum_head() < 2) {
 			beetle_comp.make_feeler();
-			cout << "added feeler" << endl;
+			cout << " comp added feeler" << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
 		
 	}
@@ -281,7 +286,8 @@ int Computer_player() {
 	else if (croll == 5) {
 		if (beetle_comp.sum_legs() < 6) {
 			beetle_comp.make_leg();
-			cout << "added leg " << endl;
+			cout << " comp added leg " << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
 		
 	}
@@ -289,7 +295,8 @@ int Computer_player() {
 	else if (croll == 6) {
 		if (beetle_comp.sum_tail() < 1) {
 			beetle_comp.make_tail();
-			cout << "added tail" << endl;
+			cout << " comp added tail" << endl;
+			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 		}
 		
 	}
@@ -313,9 +320,9 @@ int human_player() {
 	if (croll == 1) {
 		if (beetle_user.sum_body() < 1) {
 			beetle_user.make_body();
-			cout << "added body" << endl;
+			cout << " human added body" << endl;
 			cout << beetle_user.is_complete() << endl;
-			cout << beetle_user.total() << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 			return 0;
 		}
 	}
@@ -324,14 +331,16 @@ int human_player() {
 	else if (croll == 2) {
 		if (beetle_user.sum_head() < 1) {
 			beetle_user.make_head();
-			cout << "added head" << endl;
+			cout << " human added head" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 	}
 
 	else if (croll == 3) {
 		if (beetle_user.sum_head() < 1) {
 			beetle_user.make_eye();
-			cout << "added eye" << endl;
+			cout << " human added eye" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 
 	}
@@ -339,14 +348,16 @@ int human_player() {
 	else if (croll == 4) {
 		if (beetle_user.sum_head() < 2) {
 			beetle_user.make_feeler();
-			cout << "added feeler" << endl;
+			cout << " human added feeler" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 	}
 
 	else if (croll == 5) {
 		if (beetle_user.sum_legs() < 6) {
 			beetle_user.make_leg();
-			cout << "added leg " << endl;
+			cout << " human added leg " << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 
 	}
@@ -354,7 +365,8 @@ int human_player() {
 	else if (croll == 6) {
 		if (beetle_user.sum_tail() < 1) {
 			beetle_user.make_tail();
-			cout << "added tail" << endl;
+			cout << " human added tail" << endl;
+			cout << "Total human Parts" << beetle_user.total() << endl;
 		}
 
 	}
@@ -385,11 +397,11 @@ int main() {
 
 	bool hc = beetle_comp.is_complete();
 	bool cc = beetle_user.is_complete();
-	while (hc == false && cc == false) {
+	while (beetle_comp.is_complete() == false && beetle_user.is_complete() == false) {
 		Computer_player();
 		human_player();
 	}
-	cout << "The complete Beetle!\n" << endl;
+	//cout << "The complete Beetle!\n" << endl;
 
 	cout << beetle_user << endl;
 	cout << beetle_comp << endl;
