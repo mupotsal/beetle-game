@@ -118,31 +118,19 @@ public:
 
 	}
 
-	const int len_beetle = 11;
-	string complete_beetle[11] = {
-		"      Y   Y      ", //fillers
-		"      \\\\_//      ", //
-		"     .@   @.     ", // eyes
-		"  v__/  -  \\__v  ", // body and 6 legs
-		"v___|---.---|___v",
-		" v__|   |   |__v ",
-		"    \\   |   /    ",
-		"     `. : .'     ",
-		"       |:|       ",// tail
-		"       |:|       ",
-		"        v        "
-	};
+	
 
 	//FIXME: Add all of your methods
 
 
-	void show() const {
+	void show(){
 		//FIX ME -- this needs to done using << overloading
 		// and it needs to show the partial Beetle.
 		/*for (int i = 0; i < len_beetle; i++) {
 			cout << complete_beetle[i] << endl;
 		}
 		return; */
+		cout << complete_beetle[2];
 	}
 	bool is_complete() {
 
@@ -202,7 +190,7 @@ public:
 	
 	// This is to find if beetle 1 or the other is complete
 
-	friend ostream& operator << (ostream& stream, const Beetle& beetle);
+	friend ostream& operator <<(ostream& stream, const Beetle& beet);
 private:
 	string beetleName;
 	int legs = 0;
@@ -212,6 +200,21 @@ private:
 	int eyes = 0;
 	int body = 0;
 
+	const int len_beetle = 11;
+	string complete_beetle[11] = {
+		 "     Y   Y      ", //fillers
+		"      \\\\_//      ", //
+		"     .@   @.     ", // eyes
+		"  v__/  -  \\__v  ", // body and 6 legs
+		"v___|---.---|___v",
+		" v__|   |   |__v ",
+		"    \\   |   /    ",
+		"     `. : .'     ",
+		"       |:|       ",// tail
+		"       |:|       ",
+		"        v        "
+	};
+
 	//FIXME: declare all other member class and instance variables here
 
 	/*Note: You need to draw your Beetle as each part is added.
@@ -219,29 +222,13 @@ private:
 	Think about how to use the array elements in order to
 	draw the Beetle as the game progresses */
 
-	/* const int len_beetle = 11;
-	 string complete_beetle[11] = {
-		 "      Y   Y      ",
-		 "      \\\\_//      ",
-		 "     .@   @.     ",
-		 "  v__/  -  \\__v  ",
-		 "v___|---.---|___v",
-		 " v__|   |   |__v ",
-		 "    \\   |   /    ",
-		 "     `. : .'     ",
-		 "       |:|       ",
-		 "       |:|       ",
-		 "        v        "
-	 };
-	 */
+	
 
 }; //don't forget semi-colon!!
 
-ostream& operator <<(ostream& stream, const Beetle& beetle) {
-	beetle.show();
-	stream << beetle.beetleName << "/" << beetle.beetleName;
+ostream& operator <<(ostream& stream, const Beetle& beet) {
+	stream << beet.beetleName << endl;
 	return stream;
-
 }
 
 Beetle beetle_comp;
@@ -595,6 +582,7 @@ int main() {
 
 	cout << beetle_user << endl;
 	cout << beetle_comp << endl;
+	
 
 	//FIXME: Your codee
 
