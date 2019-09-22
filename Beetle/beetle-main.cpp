@@ -227,7 +227,7 @@ private:
 }; //don't forget semi-colon!!
 
 ostream& operator <<(ostream& stream, const Beetle& beet) {
-	stream << beet.beetleName << endl;
+	stream << *beet.complete_beetle << endl;
 	return stream;
 }
 
