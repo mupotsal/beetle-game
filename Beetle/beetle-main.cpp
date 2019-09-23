@@ -329,6 +329,7 @@ void draw_two_pai_legs() {
 
 	friend ostream& operator <<(ostream& stream, const Beetle& beet);
 	friend int Computer_player();
+	friend int Human_player();
 	
 private:
 	string beetleName;
@@ -647,7 +648,7 @@ int Computer_player() {
 
 }
 
-
+/*
 int human_player() {
 
 	Dice hdice(6);
@@ -798,8 +799,258 @@ int human_player() {
 
 
 
-}
+} */
+int Human_player() {
+	cout << "we are her" << endl;
+	Dice compdice(6);
+	int croll = compdice.roll();
 
+	if (croll == 1) {
+		if (beetle_user.sum_body() < 1) {
+			beetle_user.make_body();
+			cout << "User added body" << endl;
+			cout << beetle_user.is_complete() << endl;
+			cout << "COMP PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(true);
+			comp_pvalue = beetle_comp.who_plays(false);
+			beetle_user.the_body = true;
+			beetle_user.current_state();
+
+
+		}
+		else {
+			cout << "User-Body already added" << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			//beetle_user.the_body = true;
+			beetle_user.current_state();
+
+
+		}
+	}
+
+	else if (croll == 2) {
+		if (beetle_user.sum_body() == 1) {
+			if (beetle_user.sum_head() < 1) {
+				beetle_user.make_head();
+				cout << " User added head" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_head = true;
+				beetle_user.current_state();
+
+			}
+			else {
+				cout << "The body has been added already" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(false);
+				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_user.the_head = true;
+				beetle_user.current_state();
+			}
+		}
+		else {
+			cout << "Human Got Head but Body is missing" << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			beetle_user.current_state();
+			beetle_user.the_head = false;
+
+		}
+	}
+
+	else if (croll == 3) {
+		if ((beetle_user.sum_head() > 0) && (beetle_user.sum_body() > 0)) {
+			if (beetle_user.sum_eyes() < 1) {
+				beetle_user.make_eye();
+				cout << "User added eye" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_one_eye = true;
+				beetle_user.current_state();
+
+			}
+			else if (beetle_user.sum_eyes() > 0) {
+				beetle_user.make_eye();
+				cout << "User added another eye" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_one_eye = false;
+				beetle_user.the_two_eyes_with_head = true;
+
+				beetle_user.current_state();
+
+			}
+			else {
+				cout << "User-Eyes already added" << endl;
+				cout << "user PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(false);
+				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_user.the_one_eye = false;
+				beetle_user.the_two_eyes_with_head = true;
+				beetle_user.current_state();
+			}
+
+		}
+		else {
+			cout << "Human Got Eye but Body and or head is missing " << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			beetle_user.current_state();
+			beetle_user.the_one_eye = false;
+		}
+	}
+
+
+
+	else if (croll == 4) {
+
+		if ((beetle_user.sum_body() > 0) && (beetle_user.sum_head() > 0)) {
+			if (beetle_user.sum_feelers() == 0) {
+				beetle_user.make_feeler();
+				cout << " User added feeler" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_filler = true;
+				beetle_user.the_two_feelers = false;
+				beetle_user.current_state();
+				//beetle_user.the_two_filler = true;
+				//beetle_user.the_filler = false;
+
+			}
+			else if (beetle_user.sum_feelers() > 0) {
+				beetle_user.make_feeler();
+				cout << "user added second feeler" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_filler = false;
+				beetle_user.the_two_feelers = true;
+				beetle_user.current_state();
+			}
+
+			else {
+				cout << "User-Feelers already added" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(false);
+				//beetle_user.the_filler = false;
+				beetle_user.current_state();
+			}
+		}
+		else {
+			cout << "Human Got Feeler but Body and or head is missing " << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			beetle_user.the_filler = false;
+			beetle_user.current_state();
+		}
+
+	}
+
+	else if (croll == 5) {
+		if (beetle_user.sum_body() == 1) {
+			if (beetle_user.sum_legs() < 1) {
+				beetle_user.make_leg();
+				cout << " User added leg " << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				beetle_user.the_body = false;
+				beetle_user.the_one_pailgs = true;
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.current_state();
+
+			}
+			else if ((beetle_user.sum_legs() > 1) && (beetle_user.sum_legs() < 4)) {
+				beetle_user.make_leg();
+				cout << "User added the Second leg " << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				comp_pvalue = beetle_user.who_plays(true);
+				beetle_user.the_body = false;
+				beetle_user.the_one_pailgs = false;
+				beetle_user.the_two_pailgs = true;
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.current_state();
+			}
+			else if ((beetle_user.sum_legs() > 3) && (beetle_user.sum_legs() < 6)) {
+				beetle_user.make_leg();
+				cout << " User added leg third leg " << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				comp_pvalue = beetle_user.who_plays(true);
+				beetle_user.the_body = false;
+				beetle_user.the_one_pailgs = false;
+				beetle_user.the_two_pailgs = false;
+				beetle_user.the_three_pailgs = true;
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.current_state();
+			}
+			else {
+				cout << "The leg is already added" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				//comp_pvalue = beetle_user.who_plays(false);
+				//humanp_value = beetle_user.who_plays(true);
+				beetle_user.current_state();
+
+			}
+		}
+		else {
+			cout << "The Body is missing" << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			beetle_user.the_two_pailgs = false;
+			beetle_user.current_state();
+
+
+		}
+
+	}
+
+	else if (croll == 6) {
+		if (beetle_user.sum_body() > 0) {
+			if (beetle_user.sum_tail() < 1) {
+				beetle_user.make_tail();
+				cout << "User added tail" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(true);
+				comp_pvalue = beetle_comp.who_plays(false);
+				beetle_user.the_tail = true;
+				beetle_user.current_state();
+			}
+			else {
+				cout << "User-tail already added" << endl;
+				cout << "User PARTS = " << beetle_user.total() << endl;
+				humanp_value = beetle_user.who_plays(false);
+				comp_pvalue = beetle_comp.who_plays(true);
+				beetle_user.current_state();
+			}
+		}
+		else {
+			cout << "Human Got tail but The Body is missing" << endl;
+			cout << "User PARTS = " << beetle_user.total() << endl;
+			humanp_value = beetle_user.who_plays(false);
+			comp_pvalue = beetle_comp.who_plays(true);
+			beetle_user.current_state();
+		}
+
+	}
+
+	else if (croll == 1) {
+		return 0;
+		cout << "added something" << endl;
+	}
+
+	//cout << beetle_user<< endl;
+
+
+}
 
 
 
@@ -824,10 +1075,10 @@ int main() {
 	while (beetle_comp.is_complete() == false && beetle_user.is_complete() == false) {
 		while ((comp_pvalue == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
 			Computer_player();
-			cout << "the sum of feelers"<< beetle_comp.sum_feelers();
+			
 		}
 		while ((humanp_value == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
-			human_player();
+			Human_player();
 		}
 	}
 	cout << "The complete Beetle!\n" << endl;
