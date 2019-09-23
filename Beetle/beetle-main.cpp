@@ -527,7 +527,8 @@ int Computer_player() {
 				humanp_value = beetle_comp.who_plays(false);
 				//beetle_comp.the_filler = false;
 				beetle_comp.current_state();
-			}*/beetle_comp.make_feeler();
+			}*/
+			//beetle_comp.make_feeler();
 			cout << " comp added second feeler" << endl;
 			cout << "COMP PARTS = " << beetle_comp.total() << endl;
 			comp_pvalue = beetle_comp.who_plays(true);
