@@ -112,7 +112,6 @@ public:
 
 	}	
 
-	//FIXME: Add all of your methods
 
 
 	void show(){		
@@ -128,13 +127,7 @@ public:
 			return false;
 
 		}
-		/*		cout << "eyes = " << eyes << endl;
-		cout << head << endl;
-		cout << tail << endl;
-		cout << body << endl;
-		cout << feelers << endl;
-		cout << legs << endl; 
-		*/
+	
 	}
 
 	int total() {
@@ -270,33 +263,6 @@ void draw_two_pai_legs() {
 
 	}
 
-	/* void current_state() {
-		 if ((sum_body() > 0) && (sum_head() < 1)) { // drawing body
-			 draw_body();
-		     }
-		 else if ((sum_body() > 0)&&(sum_head() > 0) ){ // draw body and head
-			 draw_head();
-			 draw_body();
-
-		 }
-		 else if (sum_body() > 0) {
-			 if (sum_head() > 0) {
-				 if (sum_feelers() < 2) {
-					 draw_one_feeler();
-					 draw_head();
-					 draw_body();
-
-				 }
-				 else if (sum_feelers() > 2) {
-					 draw_two_feelers();
-					 draw_head();
-					 draw_body();
-				 }
-			 }
-		 }
-
-		}
-		*/
 		
 	 void current_state() {
 		 draw_one_feeler();
@@ -363,7 +329,6 @@ private:
 		
 	};
 
-	//FIXME: declare all other member class and instance variables here
 
 	/*Note: You need to draw your Beetle as each part is added.
 	You may use your own ASCII art or you may use mine.
