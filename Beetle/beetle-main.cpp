@@ -874,7 +874,7 @@ int Human_player() {
 				beetle_user.current_state();
 
 			}
-			else if (beetle_user.sum_eyes() > 0) {
+			else if (beetle_user.sum_eyes() == 1) {
 				beetle_user.make_eye();
 				cout << "User added another eye" << endl;
 				cout << "User PARTS = " << beetle_user.total() << endl;
@@ -925,7 +925,7 @@ int Human_player() {
 				//beetle_user.the_filler = false;
 
 			}
-			else if (beetle_user.sum_feelers() > 0) {
+			else if (beetle_user.sum_feelers() ==1 ) {
 				beetle_user.make_feeler();
 				cout << "user added second feeler" << endl;
 				cout << "User PARTS = " << beetle_user.total() << endl;
