@@ -12,7 +12,7 @@ By 8 am on 9/20/19 Final Milestone: Lab is complete.
 
 #include <iostream>
 #include <string>
-#include <random> //needed for Getrandom
+#include <random> //needed for Getrandomm
 #include <chrono> 
 using namespace std;
 
