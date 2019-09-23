@@ -12,7 +12,7 @@ By 8 am on 9/20/19 Final Milestone: Lab is complete.
 
 #include <iostream>
 #include <string>
-#include <random> //needed for Getrandomm
+#include <random> //needed for Getrandom
 #include <chrono> 
 using namespace std;
 
@@ -110,18 +110,26 @@ public:
 		tail += 1;
 	
 
-	}	
+	}
+
+	
 
 	//FIXME: Add all of your methods
 
 
-	void show(){		
+	void show(){
+		//FIX ME -- this needs to done using << overloading
+		// and it needs to show the partial Beetle.
+		/*for (int i = 0; i < len_beetle; i++) {
+			cout << complete_beetle[i] << endl;
+		}
+		return; */
 		cout << complete_beetle[2];
 	}
 	bool is_complete() {
 
 		int sum = total();
-		if (sum >= 13) {
+		if (sum >= 14) {
 			return true;
 		}
 		if (sum < 14) {
@@ -356,10 +364,10 @@ private:
 		"       |:|       ", // part of tail       pos12
 		"        v        " //  part of tail       pos 13
 		"       /  -  \\  ", // body and 6 legs   pos5   pos 14
-		"    |---.---|",  // single legs added pos6   pos 15
-	    "    |   |   | ",  // doudle legs added pos7  pos 16
-		"    |   |   | ",  // doudle legs added pos7  pos 17
-		"        Y         " //fillers             pos 18
+		"      |---.---|",  // single legs added pos6   pos 15
+	    "      |   |   | ",  // doudle legs added pos7  pos 16
+		"      |   |   | ",  // doudle legs added pos7  pos 17
+		"          Y         " //fillers             pos 18
 		
 	};
 
@@ -521,21 +529,12 @@ int Computer_player() {
 			}
 			
 			else {
-				/*cout << "Comp-Feelers already added" << endl;
+				cout << "Comp-Feelers already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
 				comp_pvalue = beetle_comp.who_plays(false);
 				humanp_value = beetle_comp.who_plays(false);
 				//beetle_comp.the_filler = false;
 				beetle_comp.current_state();
-			}*/
-			//beetle_comp.make_feeler();
-			cout << " comp added second feeler" << endl;
-			cout << "COMP PARTS = " << beetle_comp.total() << endl;
-			comp_pvalue = beetle_comp.who_plays(true);
-			humanp_value = beetle_user.who_plays(false);
-			beetle_comp.the_filler = false;
-			beetle_comp.the_two_feelers = true;
-			beetle_comp.current_state();
 			}
 		}
 		else {
@@ -588,8 +587,8 @@ int Computer_player() {
 		    else {
 				cout << "The is already added" << endl;
 				cout << "COMP PARTS = " << beetle_comp.total() << endl;
-				comp_pvalue = beetle_comp.who_plays(false);
-				humanp_value = beetle_user.who_plays(true);
+				//comp_pvalue = beetle_comp.who_plays(false);
+				//humanp_value = beetle_user.who_plays(true);
 				beetle_comp.current_state();
 				
 		 }
@@ -919,28 +918,22 @@ int main() {
 	bool cc = beetle_user.is_complete();
 	while (beetle_comp.is_complete() == false && beetle_user.is_complete() == false) {
 		while ((comp_pvalue == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
-			Computer_player();			
-			if (beetle_comp.is_complete() == true) {
-				cout << "The computer wins" << endl;
-			}
-			else if (beetle_user.is_complete() == true) {
-				cout << "The user wins" << endl;
-			}
-			cout << "The complete Beetle!\n" << endl;
+			Computer_player();
+			cout << "The parts " << beetle_user.total();
 			
 		}
 		while ((humanp_value == true) && (beetle_comp.is_complete() == false && beetle_user.is_complete() == false)) {
 			Human_player();
-			if (beetle_comp.is_complete() == true) {
-				cout << "The computer wins" << endl;
-			}
-			else if (beetle_user.is_complete() == true) {
-				cout << "The User wins" << endl;
-			}
-			cout << "The complete Beetle!\n" << endl;
 		}
 	}
+	cout << "The complete Beetle!\n" << endl;
 	
+	cout << beetle_user << endl;
+	cout << beetle_comp << endl;
+	cout << beetle_comp.total() <<endl;
+	
+	
+
 
 	cin >> readchar; //This is to keep screen open in some situations.
 	return 0;
